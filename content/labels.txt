@@ -1,0 +1,2 @@
+0 fone
+1 sem fone
