@@ -21,7 +21,7 @@ def prepareAndPredict(image):
     # determined by the first position in the shape tuple, in this case 1
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-    # Replace this with the path to your image
+    # Opening loaded image
     image = Image.open(image).convert("RGB")
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
@@ -67,9 +67,11 @@ def showPredictPage():
     with st.container():
         image_sent = st.button("Enviar imagem para o processo de análise")
 
+    #if a image is uploaded, call the method which process and predict the image class
     if(image_sent and uploaded_image is not None):
         class_name, confidence_score = prepareAndPredict(uploaded_image)
         
+        #if the model predicts the target class...
         if(class_name.strip() == ("guitar")):
             st.success("Verificamos que trabalhamos com o equipamento em questão. Em breve entraremos em contato!")
             st.success(nome + " - " + email + " - " + contato)
